@@ -39,4 +39,4 @@ const src = 'music.mp3/your-song.mp3';
 
 =====================================
 
-Built by Reoof Abahussain ★# BirthdayCard
+Built by Reoof Abahussain ★
