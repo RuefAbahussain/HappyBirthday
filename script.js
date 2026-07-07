@@ -109,7 +109,7 @@
   function startMusic(){
     if(audioElement) return;
     try{
-      audioElement = new Audio('Hour) Happy Birthday To You Acoustic Piano, Arranged by OliviaZzz (Happy Birthday To Everyone).mp4');
+      audioElement = new Audio('Happy-Birthday.mp3');
       audioElement.loop = true;
       audioElement.volume = 0.6;
       audioElement.play().catch(() => {});
