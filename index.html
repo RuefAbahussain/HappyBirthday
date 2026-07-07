@@ -1,30 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Card</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Card — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-page">
-        <div class="balloons-container" id="balloonsContainer"></div>
-        <div class="form-box">
-            <p class="form-heading">Send a Birthday Card </p>
-            <p class="form-subtitle">A little surprise to make their day brighter</p>
-            <form id="nameForm">
-                <div class="input-wrap">
-                    <input type="text" id="senderInput" placeholder="Your name (sender)..." required maxlength="50">
-                    <span class="input-emoji">✍️</span>
-                </div>
-                <div class="input-wrap">
-                    <input type="text" id="recipientInput" placeholder="Their name (recipient)..." required maxlength="50">
-                    <span class="input-emoji">🎈</span>
-                </div>
-                <button type="submit" class="btn">Send Birthday Card</button>
-            </form>
+
+  <div class="stage" id="stage">
+
+    <!-- Screen 1: invite form -->
+    <div class="screen active" id="screen1">
+      <form class="invite" id="inviteForm" autocomplete="off">
+        <p class="eyebrow">a little invitation to make</p>
+        <h1 class="display">A Birthday Card</h1>
+        <p class="sub">Add your name and theirs, and we'll set up a card worth opening.</p>
+        <div class="field">
+          <label for="sender">Your name (sender)</label>
+          <input type="text" id="sender" placeholder="e.g. Sarah" required>
         </div>
+        <div class="field">
+          <label for="recipient">Their name (birthday person)</label>
+          <input type="text" id="recipient" placeholder="e.g. Noura" required>
+        </div>
+        <button type="submit" class="btn btn-gold">Create the card →</button>
+        <p class="hint">Next, they'll add their photo and age</p>
+      </form>
     </div>
-    <script src="script.js"></script>
+
+  </div>
+
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle music">🔈</button>
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
+
