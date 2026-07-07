@@ -1,74 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- SVG filter to remove white background -->
-    <svg style="position:absolute;width:0;height:0;" aria-hidden="true">
-        <defs>
-            <filter id="removeWhite">
-                <feColorMatrix type="matrix" values="
-                    1 0 0 0 0
-                    0 1 0 0 0
-                    0 0 1 0 0
-                    -1 -1 -1 0 1.5"/>
-                <feComposite in="SourceGraphic" in2="composite" operator="in"/>
-            </filter>
-        </defs>
-    </svg>
 
-    <div class="card-page">
+  <div class="stage" id="stage">
 
-        <!-- Age Input Step -->
-        <div class="age-form-box" id="ageForm">
-            <span class="form-icon">🎂</span>
-            <h2>You got a Birthday Card!</h2>
-            <p>How old are you turning? <span class="rose-emoji">🌸</span></p>
-            <div class="input-wrap">
-                <input type="number" id="ageInput" placeholder="Enter your age..." min="1" max="120">
-                <span class="input-emoji">🎂</span>
-            </div>
-
-            <p class="photo-prompt">📸 Show us whose birthday it is! <span class="sparkle">✨</span></p>
-            <label for="photoInput" class="photo-upload" id="photoUploadLabel">
-                <span class="photo-upload-icon">📷</span>
-                <span class="photo-upload-text" id="photoUploadText">Choose photo...</span>
-                <input type="file" id="photoInput" accept="image/*" hidden>
-            </label>
-            <div class="photo-preview-wrap" id="photoPreviewWrap">
-                <img id="photoPreview" alt="">
-                <button type="button" class="photo-remove" id="photoRemove">×</button>
-            </div>
-
-            <button class="btn" onclick="showCard()">Open Your Card ✨</button>
+    <!-- Screen 2: cover / setup -->
+    <div class="screen active" id="screen2">
+      <div class="cover" id="cover">
+        <p class="for-line" id="forLine">For …</p>
+        <h1 id="coverTitle">Happy Birthday</h1>
+        <label class="photo-picker" id="photoPicker">
+          <span class="picker-label" id="pickerLabel">Add Your Photo</span>
+          <input type="file" id="photoInput" accept="image/*">
+        </label>
+        <div class="age-field">
+          <label for="ageInput">How Old Are You?</label>
+          <input type="number" id="ageInput" min="1" max="120" placeholder="—">
         </div>
-
-        <!-- Card Content -->
-        <div class="card-content hidden" id="cardContent">
-            <div class="card-layout">
-                <div class="user-photo-wrap" id="userPhotoWrap">
-                    <img class="party-hat" src="hat.png" alt="">
-                    <div class="user-photo-circle">
-                        <img id="userPhoto" alt="">
-                    </div>
-                </div>
-                <div class="card-text">
-                    <p class="main-title">Happy Birthday <span id="nameDisplay" class="name-text"></span></p>
-                    <p class="age-line"><span id="ageDisplay"></span> years</p>
-                    <p class="celebrating-text">I wish you a happy and long life 🌙</p>
-                    <p class="from-text">From: <span id="fromDisplay">Reeof Abahussain</span> <span class="heart-symbol">♡</span></p>
-                </div>
-            </div>
-            <img src="background.jpeg" alt="Birthday cake" class="cake-image">
-        </div>
-
-        <div class="balloons-container" id="balloonsContainer"></div>
+        <button class="seal" id="sealBtn" disabled>Seal &amp; Open</button>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Screen 3: reveal -->
+    <div class="screen" id="screen3">
+      <div class="reveal" id="reveal">
+        <div class="frame-wrap">
+          <div class="hat" aria-hidden="true">
+          <svg viewBox="0 0 92 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hatFill" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#FF6FA0"/>
+                <stop offset="100%" stop-color="#F7D48A"/>
+              </linearGradient>
+              <pattern id="hatStripes" width="16" height="16" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <rect width="16" height="16" fill="transparent"/>
+                <rect width="8" height="16" fill="#FFFFFF" opacity="0.4"/>
+              </pattern>
+              <radialGradient id="pomGrad" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFDF8"/>
+                <stop offset="100%" stop-color="#F7D48A"/>
+              </radialGradient>
+            </defs>
+            <path d="M14,92 Q46,76 78,92 L46,6 Z" fill="url(#hatFill)"/>
+            <path d="M14,92 Q46,76 78,92 L46,6 Z" fill="url(#hatStripes)"/>
+            <ellipse cx="46" cy="92" rx="34" ry="7" fill="#B9792A"/>
+            <ellipse cx="46" cy="92" rx="34" ry="7" fill="none" stroke="#FFFBF9" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="46" cy="7" r="9" fill="url(#pomGrad)"/>
+            <circle cx="43" cy="4" r="2.4" fill="#FFFFFF" opacity="0.8"/>
+          </svg>
+        </div>
+          <div class="photo-frame" id="photoFrame"></div>
+        </div>
+        <p class="script-line">Happy Birthday</p>
+        <h1 id="recipientName">…</h1>
+        <div class="age-pill">Turning <span id="ageValue">--</span> today</div>
+        <p class="from-line" id="fromLine">From …</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="restart-btn" id="restartBtn" style="display:none;">↺ Restart</button>
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle music">🔈</button>
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
+
